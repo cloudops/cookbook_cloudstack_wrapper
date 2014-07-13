@@ -1,5 +1,5 @@
 # Cookbook Name:: cloudstack_wrapper
-# Resource:: management_server
+# Resource:: all_in_one
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
 # Copyright:: Copyright (c) 2014 CloudOps.com
@@ -20,23 +20,5 @@
 ###############################################################################
 # Create an Apache Cloudstack Management server with folllowing:
 
-include_recipe "cloudstack::management_server"
-
-# init database and connection configuration
-cloudstack_setup_database node["cloudstack"]["db"]["host"] do
-  root_user     node["cloudstack"]["db"]["rootusername"]
-  root_password node["cloudstack"]["db"]["rootpassword"]
-  user          node["cloudstack"]["db"]["username"]
-  password      node["cloudstack"]["db"]["password"]
-  action        :create
-end
-
-# download initial systemvm template
-cloudstack_system_template 'xenserver' do
-  nfs_path    node["cloudstack"]["secondary"]["path"]
-  nfs_server  node["cloudstack"]["secondary"]["host"]
-  db_user     node["cloudstack"]["db"]["username"]
-  db_password node["cloudstack"]["db"]["password"]
-  db_host     node["cloudstack"]["db"]["host"]
-end
-
+include_recipe 'cloudstack_wrapper::database_server'
+include_recipe 'cloudstack_wrapper::management_server'

@@ -1,17 +1,15 @@
 cloudstack_wrapper Cookbook
 ===========================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Opscode Chef wrapper cookbook to install Apache CloudStack using cookbook cloudstack. Installation examples and provide installation order of various CloudStack components.
+
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - cloudstack_wrapper needs toaster to brown your bagel.
+#### cookbooks
+- `cloudstack` - cloudstack cookbook provide libraries to install and configure CloudStack
+- `mysql` - mysql cookbook is used to install MySQL server required by CloudStack
 
 Attributes
 ----------
@@ -65,4 +63,20 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+- Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
+
+```text
+Copyright:: Copyright (c) 2014 CloudOps.com
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
