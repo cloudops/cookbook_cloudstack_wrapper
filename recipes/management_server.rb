@@ -40,3 +40,14 @@ cloudstack_system_template 'xenserver' do
   db_host     node["cloudstack"]["db"]["host"]
 end
 
+bash "cloudstack-setup-management" do
+  code "/usr/bin/cloudstack-setup-management"
+  not_if { ::File.exists?("/etc/cloudstack/management/tomcat6.conf") }
+end
+
+service "cloudstack-management" do
+  supports :restart => true, :status => true, :start => true, :stop => true
+  action [ :enable, :start ]
+end
+
+
