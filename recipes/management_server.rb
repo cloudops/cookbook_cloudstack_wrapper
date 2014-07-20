@@ -19,6 +19,14 @@
 #
 ###############################################################################
 # Create an Apache Cloudstack Management server with folllowing:
+#
+# 1. Install CloudStack packages
+# 2. Initialize MySQL database
+# 3. Download systemVM template
+# 4. Configure CloudStack configuration files
+# 5. Start cloudstack-management
+# 6. Generate API keys for admin
+###############################################################################
 
 include_recipe "cloudstack::management_server"
 
@@ -40,7 +48,7 @@ cloudstack_system_template 'xenserver' do
   db_host     node["cloudstack"]["db"]["host"]
 end
 
-cloudstack_setup_management node['hostname']
+cloudstack_setup_management node.name
 
 service "cloudstack-management" do
   action [ :enable, :start ]

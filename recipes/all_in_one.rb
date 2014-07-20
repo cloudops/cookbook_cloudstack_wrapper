@@ -19,12 +19,20 @@
 #
 ###############################################################################
 # Create an Apache Cloudstack Management server with folllowing:
+# 1. Install MySQL server
+# 2. Prepare Secondary Storage (not yet implemented)
+# 3. Prepare Primary Storage (not yet implemented)
+# 4. Install Cloudstack management-server
+# 5. Install usage server
+# 6. apply Global settings tunings
+###############################################################################
 
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
 
-# cloudstack_global_setting "expunge.delay" do
-#   value "80"
-#   notifies :restart, "service[cloudstack-management]", :delayed
-# end
+# Changing Global Settings example:
+cloudstack_global_setting "expunge.delay" do
+  value "80"
+  notifies :restart, "service[cloudstack-management]", :delayed
+end
