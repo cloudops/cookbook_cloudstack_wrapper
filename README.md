@@ -1,7 +1,7 @@
 cloudstack_wrapper Cookbook
 ===========================
 
-Opscode Chef wrapper cookbook to install Apache CloudStack using cookbook cloudstack. Installation examples and provide installation order of various CloudStack components.
+Chef wrapper cookbook to install Apache CloudStack using cookbook cloudstack. Installation examples and provide installation order of various CloudStack components.
 
 
 Requirements
@@ -11,40 +11,21 @@ Requirements
 - `cloudstack` - cloudstack cookbook provide libraries to install and configure CloudStack
 - `mysql` - mysql cookbook is used to install MySQL server required by CloudStack
 
-Attributes
-----------
-TODO: List your cookbook attributes here.
 
-e.g.
-#### cloudstack_wrapper::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['cloudstack_wrapper']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
 
 Usage
 -----
-#### cloudstack_wrapper::default
-TODO: Write usage instructions for each cookbook.
+#### cloudstack_wrapper::add_in_one_
 
-e.g.
-Just include `cloudstack_wrapper` in your node's `run_list`:
+Configure a CloudStack Management server with a local MySQL database and /data/secondary as secondary storage which will contain SystemVM template for XenServer.
+
+Just include `cloudstack_wrapper::all_in_one` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[cloudstack_wrapper]"
+    "recipe[cloudstack_wrapper::all_in_one]"
   ]
 }
 ```

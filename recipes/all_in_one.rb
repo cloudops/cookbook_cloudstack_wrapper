@@ -22,3 +22,9 @@
 
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
+include_recipe 'cloudstack::usage'
+
+# cloudstack_global_setting "expunge.delay" do
+#   value "80"
+#   notifies :restart, "service[cloudstack-management]", :delayed
+# end
