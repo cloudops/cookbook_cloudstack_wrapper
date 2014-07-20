@@ -34,5 +34,5 @@ include_recipe 'cloudstack::usage'
 # Changing Global Settings example:
 cloudstack_global_setting "expunge.delay" do
   value "80"
-  notifies :restart, "service[cloudstack-management]", :delayed
+  #notifies :restart, "service[cloudstack-management]", :delayed
 end
