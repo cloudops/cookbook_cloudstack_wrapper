@@ -57,4 +57,7 @@ end
 #cloudstack_generate_api_keys "admin"
 cloudstack_api_keys "admin" do
   action :create
+  # adding delay to let CloudStack management-server start properly
+  retries 12
+  retry_delay 5
 end
