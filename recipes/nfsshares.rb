@@ -1,5 +1,5 @@
 # Cookbook Name:: cloudstack_wrapper
-# Resource:: all_in_one
+# Resource:: nfsshares
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
 # Copyright:: Copyright (c) 2014 CloudOps.com
@@ -18,24 +18,40 @@
 # limitations under the License.
 #
 ###############################################################################
-# Create an Apache Cloudstack Management server with folllowing:
-# 1. Install MySQL server
-# 2. Prepare Secondary Storage (not yet implemented)
-# 3. Prepare Primary Storage (not yet implemented)
-# 4. Install Cloudstack management-server
-# 5. Install usage server
-# 6. apply Global settings tunings
+# provide NFS shares for CloudStack Storage
+#
 ###############################################################################
 
-#include_recipe 'cloudstack_wrapper::nfsshares'
-include_recipe 'cloudstack_wrapper::database_server'
-include_recipe 'cloudstack_wrapper::management_server'
-include_recipe 'cloudstack::usage'
+include_recipe 'nfs::server'
 
-# Changing Global Settings example:
-cloudstack_global_setting 'expunge.delay' do
-  value '80'
-  retries 5
-  retry_delay 2
-  #notifies :restart, "service[cloudstack-management]", :delayed
+# Secondary Storage
+###############################################################################
+directory node['cloudstack']['secondary']['path'] do
+  owner "root"
+  group "root"
+  action :create
+  recursive true
+end
+
+nfs_export node['cloudstack']['secondary']['path'] do
+  network '*'
+  writeable true 
+  sync false
+  options ['no_root_squash','no_subtree_check']
+end
+
+# Primary Storage
+###############################################################################
+directory node['cloudstack']['primary']['path'] do
+  owner "root"
+  group "root"
+  action :create
+  recursive true
+end
+
+nfs_export node['cloudstack']['primary']['path'] do
+  network '*'
+  writeable true 
+  sync false
+  options ['no_root_squash','no_subtree_check']
 end

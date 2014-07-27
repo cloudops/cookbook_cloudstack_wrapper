@@ -8,6 +8,7 @@ version          '0.1.0'
 
 depends "mysql", "> 5.2.0"
 depends "cloudstack", ">= 3.0.0"
+depends "nfs", ">= 2.0.0"
 
 supports 'centos'
 supports 'redhat'

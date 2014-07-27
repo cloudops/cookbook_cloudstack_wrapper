@@ -1,5 +1,5 @@
 # Cookbook Name:: cloudstack_wrapper
-# Resource:: all_in_one
+# Resource:: mgt_remotenfs
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
 # Copyright:: Copyright (c) 2014 CloudOps.com
@@ -18,16 +18,32 @@
 # limitations under the License.
 #
 ###############################################################################
-# Create an Apache Cloudstack Management server with folllowing:
-# 1. Install MySQL server
-# 2. Prepare Secondary Storage (not yet implemented)
-# 3. Prepare Primary Storage (not yet implemented)
-# 4. Install Cloudstack management-server
-# 5. Install usage server
-# 6. apply Global settings tunings
+# Create an Apache Cloudstack Management server using remote NFS server:
+# 1.  mount NFS share for Secondary Storage
+# 2.  Install MySQL server
+# 4.  Install Cloudstack management-server
+# 4.1 Initialize cloud databases
+# 4.2 Download initial system vm template
+# 5.  Install usage server
+# 6.  apply Global settings tunings
 ###############################################################################
 
-#include_recipe 'cloudstack_wrapper::nfsshares'
+include_recipe 'nfs'
+
+directory node['cloudstack']['secondary']['path'] do
+  owner "root"
+  group "root"
+  action :create
+  recursive true
+end
+
+mount node['cloudstack']['secondary']['path'] do
+  device "#{@node['cloudstack']['secondary']['host']}:#{node['cloudstack']['secondary']['path']}"
+  fstype "nfs"
+  options "rw"
+  action [:mount]
+end
+
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
