@@ -43,9 +43,11 @@ end
 cloudstack_system_template 'xenserver' do
   nfs_path    node['cloudstack']['secondary']['path']
   nfs_server  node['cloudstack']['secondary']['host']
+  url         node['cloudstack']['hypervisor_tpl']['xenserver']
   db_user     node['cloudstack']['db']['username']
   db_password node['cloudstack']['db']['password']
   db_host     node['cloudstack']['db']['host']
+  action :create
 end
 
 cloudstack_setup_management node.name
@@ -56,8 +58,10 @@ end
 
 #cloudstack_generate_api_keys 'admin'
 cloudstack_api_keys 'admin' do
-  action :create
+  admin_apikey    node['cloudstack']['admin']['api_key']
+  admin_secretkey node['cloudstack']['admin']['secret_key']
+  action          :update
   # adding delay to let CloudStack management-server start properly
-  retries 12
-  retry_delay 5
+  retries         12
+  retry_delay     5
 end

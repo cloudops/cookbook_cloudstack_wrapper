@@ -1,5 +1,5 @@
 name             'cloudstack_wrapper'
-maintainer       'CloudOps Inc.'
+maintainer       'Pierre-Luc Dion'
 maintainer_email 'pdion@cloudops.com'
 license          'All rights reserved'
 description      'Configures and Customize Apache CloudStack using cookbook cloudstack libraries'
@@ -16,3 +16,9 @@ supports 'debian'
 supports 'ubuntu'
 supports 'fedora'
 supports 'oracle'
+
+provides "cloudstack_wrapper::all_in_one"
+provides "cloudstack_wrapper::mgt_remotenfs"
+provides "cloudstack_wrapper::management_server"
+provides "cloudstack_wrapper::database_server"
+provides "cloudstack_wrapper::nfs_server"

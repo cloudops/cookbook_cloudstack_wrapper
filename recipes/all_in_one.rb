@@ -27,7 +27,12 @@
 # 6. apply Global settings tunings
 ###############################################################################
 
-#include_recipe 'cloudstack_wrapper::nfsshares'
+service 'iptables' do
+  action [ :disable, :stop ]
+  only_if { platform?(%w{redhat centos fedora oracle}) }
+end
+
+include_recipe 'cloudstack_wrapper::nfsshares'
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'

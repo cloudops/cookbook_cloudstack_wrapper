@@ -8,14 +8,14 @@ Requirements
 ------------
 
 #### cookbooks
-- `cloudstack` - cloudstack cookbook provide libraries to install and configure CloudStack
-- `mysql` - mysql cookbook is used to install MySQL server required by CloudStack
-
+- `cloudstack` - cloudstack cookbook provide libraries to install and configure CloudStack.
+- `mysql` - mysql cookbook is used to install MySQL server required by CloudStack.
+- `nfs` - nfs cookbook used for secondary storage and to import systemvm-templates.
 
 
 Usage
 -----
-#### cloudstack_wrapper::add_in_one_
+#### cloudstack_wrapper::add_in_one
 
 Configure a CloudStack Management server with a local MySQL database and /data/secondary as secondary storage which will contain SystemVM template for XenServer.
 

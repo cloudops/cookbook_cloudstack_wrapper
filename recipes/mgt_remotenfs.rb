@@ -38,10 +38,11 @@ directory node['cloudstack']['secondary']['path'] do
 end
 
 mount node['cloudstack']['secondary']['path'] do
-  device "#{@node['cloudstack']['secondary']['host']}:#{node['cloudstack']['secondary']['path']}"
+  device "#{node['cloudstack']['secondary']['host']}:#{node['cloudstack']['secondary']['path']}"
   fstype "nfs"
   options "rw"
   action [:mount]
+  not_if { node['cloudstack']['secondary']['host'] == node.name or node['cloudstack']['secondary']['host'] == node["ipaddress"] or node['cloudstack']['secondary']['host'] == "localhost" }
 end
 
 include_recipe 'cloudstack_wrapper::database_server'
