@@ -60,7 +60,7 @@ end
 cloudstack_api_keys 'admin' do
   admin_apikey    node['cloudstack']['admin']['api_key']
   admin_secretkey node['cloudstack']['admin']['secret_key']
-  action          :update
+  action          :create
   # adding delay to let CloudStack management-server start properly
   retries         12
   retry_delay     5
