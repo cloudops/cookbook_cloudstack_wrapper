@@ -19,7 +19,7 @@
 # Install and build CloudStack from Source
 
 default['java']['jdk_version'] = '7'
-node['maven']['version'] = 3
+default['maven']['version'] = 3
 
 default['cloudstack']['source']['repo'] = "https://github.com/apache/cloudstack.git"
 default['cloudstack']['source']['branch'] = '4.4'

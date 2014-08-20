@@ -19,19 +19,33 @@
 # Install and build CloudStack from Source
 
 # dependencies
-include_recipe 'build-essential'
+include_recipe 'build-essential::default'
 include_recipe 'java'
 include_recipe 'git'
 include_recipe 'maven'
-include_recipe 'tomcat'
+#include_recipe 'tomcat'
 include_recipe 'cloudstack_wrapper::nfsshares'
 include_recipe 'cloudstack_wrapper::database_server'
 
+package 'python-setuptools'
+package 'python-pip'
 
 git "/data/cloudstack_source" do
    repository node['cloudstack']['source']['repo']
    revision node['cloudstack']['source']['branch']
+   checkout_branch node['cloudstack']['source']['branch']
    action :sync
    user "root"
    group "root"
+end
+
+# download initial systemvm template
+cloudstack_system_template 'xenserver' do
+  nfs_path    node['cloudstack']['secondary']['path']
+  nfs_server  node['cloudstack']['secondary']['host']
+  url         node['cloudstack']['hypervisor_tpl']['xenserver']
+  db_user     node['cloudstack']['db']['username']
+  db_password node['cloudstack']['db']['password']
+  db_host     node['cloudstack']['db']['host']
+  action :create
 end
