@@ -41,4 +41,3 @@ default['cloudstack']['network']['system']['subnet'] = "*"
 
 default['cloudstack']['admin']['api_key'] = "" # automatically generated
 default['cloudstack']['admin']['secret_key'] = ""  # automatically generated
-
