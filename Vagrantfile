@@ -1,45 +1,35 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.box = "exoscale-centos-6.5"
+  config.ssh.username = "root"
+  config.ssh.pty = true
+  config.vm.provider :cloudstack do |cloudstack, override|
+    cloudstack.api_key = "AAAA"
+    cloudstack.secret_key = "AAAA"
 
-VAGRANTFILE_API_VERSION = '2'
+    cloudstack.service_offering_id = "b6e9d1e8-89fc-4db3-aaa4-9b4c5b1d0844"
 
-Vagrant.require_version '>= 1.5.0'
-
-unless Vagrant.has_plugin?('vagrant-omnibus')
-  raise 'vagrant-omnibus is not installed!'
-end
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.hostname = 'cloudstack-berkshelf'
-
-  config.vm.box = 'chef/centos-6.5'
-
-  config.omnibus.chef_version = "11.16.0"
-
-  # Port forward Tomcat
-  config.vm.network 'forwarded_port', guest: 8080, host: 8081
-
-  config.vm.network :private_network, :auto_config => true, :ip => '192.168.56.15'
-
-  if Vagrant.has_plugin?('vagrant-cachier')
-    config.cache.scope = :box
-    config.cache.auto_detect = true
-    config.omnibus.cache_packages = true
+    cloudstack.security_group_ids = [ "a3267912-b410-4b2c-96ff-eeb51e793c39" ]
+    cloudstack.keypair = "vagrant"
   end
 
+  config.omnibus.chef_version = "11.16.0"
   config.berkshelf.berksfile_path = './Berksfile'
   config.berkshelf.enabled = true
 
+  config.vm.provision "shell", inline: "setenforce 0"
+  
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ['cookbooks']
 
     chef.run_list = [
-        'recipe[cloudstack_wrapper::all_in_one]'
+      'recipe[hostname::default]',
+      'recipe[cloudstack_wrapper::all_in_one]'
     ]
 
-    config.vm.provider :virtualbox do |vb|
-      vb.customize ['modifyvm', :id, '--memory', '2048']
-    end
-
+    chef.json = {
+      'set_fqdn' => '*.localdomain'
+    }
   end
+
 end
+
