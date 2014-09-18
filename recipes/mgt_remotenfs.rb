@@ -51,6 +51,8 @@ include_recipe 'cloudstack::usage'
 
 # Changing Global Settings example:
 cloudstack_global_setting 'expunge.delay' do
+  admin_apikey    node['cloudstack']['admin']['api_key']
+  admin_secretkey node['cloudstack']['admin']['secret_key']
   value '80'
   retries 5
   retry_delay 2

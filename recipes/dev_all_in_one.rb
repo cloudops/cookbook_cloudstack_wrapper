@@ -40,6 +40,8 @@ include_recipe 'cloudstack::usage'
 
 # Changing Global Settings example:
 cloudstack_global_setting 'system.vm.use.local.storage' do
+  admin_apikey    node['cloudstack']['admin']['api_key']
+  admin_secretkey node['cloudstack']['admin']['secret_key']
   value 'true'
   retries 5
   retry_delay 2
