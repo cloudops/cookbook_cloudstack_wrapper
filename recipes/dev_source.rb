@@ -23,7 +23,12 @@ include_recipe 'build-essential::default'
 include_recipe 'java'
 include_recipe 'git'
 include_recipe 'maven'
-#include_recipe 'tomcat'
+include_recipe 'tomcat'
+
+service 'tomcat6' do
+	action :stop, :disable
+end
+
 include_recipe 'cloudstack_wrapper::nfsshares'
 include_recipe 'cloudstack_wrapper::database_server'
 
