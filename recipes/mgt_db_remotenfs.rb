@@ -1,5 +1,5 @@
 # Cookbook Name:: cloudstack_wrapper
-# Resource:: mgt_remotenfs
+# Resource:: mgt_db_remotenfs
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
 # Copyright:: Copyright (c) 2014 CloudOps.com
@@ -20,6 +20,7 @@
 ###############################################################################
 # Create an Apache Cloudstack Management server using remote NFS server:
 # 1.  mount NFS share for Secondary Storage
+# 2.  Install MySQL server
 # 4.  Install Cloudstack management-server
 # 4.1 Initialize cloud databases
 # 4.2 Download initial system vm template
@@ -44,6 +45,7 @@ mount node['cloudstack']['secondary']['path'] do
   not_if { node['cloudstack']['secondary']['host'] == node.name or node['cloudstack']['secondary']['host'] == node["ipaddress"] or node['cloudstack']['secondary']['host'] == "localhost" }
 end
 
+include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
 
