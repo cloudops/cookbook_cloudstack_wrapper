@@ -43,7 +43,7 @@ end
 cloudstack_system_template 'xenserver' do
   nfs_path    node['cloudstack']['secondary']['path']
   nfs_server  node['cloudstack']['secondary']['host']
-  url         node['cloudstack']['hypervisor_tpl']['xenserver']
+  url         node['cloudstack']['systemvm']['xenserver']
   db_user     node['cloudstack']['db']['username']
   db_password node['cloudstack']['db']['password']
   db_host     node['cloudstack']['db']['host']
