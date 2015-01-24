@@ -1,7 +1,12 @@
 cloudstack_wrapper Cookbook
 ===========================
 
-Chef wrapper cookbook to install Apache CloudStack using cookbook cloudstack. Installation examples and provide installation order of various CloudStack components.
+[Chef](http://www.chef.io/) wrapper cookbook to install [Apache Cloudstack](http://cloudstack.apache.org)
+using [cloudstack cookbook](https://github.com/cloudops/cookbook_cloudstack). Installation examples and provide installation order of various CloudStack components.
+
+In this wrapper example, if you want to install a CloudStack management server
+with all dependencies such as installing MySQL server, system VM template for
+XenServer, use ``cloudstack_wrapper::all_in_one`` recipe.
 
 
 Requirements
@@ -15,9 +20,15 @@ Requirements
 
 Usage
 -----
-#### cloudstack_wrapper::add_in_one
 
-Configure a CloudStack Management server with a local MySQL database and /data/secondary as secondary storage which will contain SystemVM template for XenServer.
+#### cloudstack_wrapper::all_in_one
+
+Configure a CloudStack Management server which will contain:
+- local MySQL server
+- initialize CloudStack database
+- setup nfs share: ``/data/secondary`` for the secondary storage
+- Download XenServer SystemVM template.
+- Download vhd-util script.
 
 Just include `cloudstack_wrapper::all_in_one` in your node's `run_list`:
 
@@ -30,24 +41,48 @@ Just include `cloudstack_wrapper::all_in_one` in your node's `run_list`:
 }
 ```
 
+#### cloudstack_wrapper::dev_all_in_one
+
+Same as `all_in_one` but set the Global Setting ``system.vm.use.local.storage``
+to use Local Storage for System VMs.
+
+
+#### cloudstack_wrapper::management_server
+
+Install Management Server using remote NFS share as Secondary Storage and
+remote MySQL server.
+
+
+#### cloudstack_wrapper::mgt_remotenfs
+
+Use Remote NFS share for Secondary Storage and install MySQL server and 
+management server locally.
+
+
+#### cloudstack_wrapper::database_server
+
+Install MySQL server with tuning required by CloudStack.
+
+
+#### cloudstack_wrapper::nfsshares
+
+Configure NFS server to export Primary and Secondary Storages shares.
+
+
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Fork it and customize it for your needs.
+Fill [Github issues](https://github.com/cloudops/cookbook_cloudstack_wrapper/issues)
+if you get into problems.
+
 
 License and Authors
 -------------------
 - Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 
 ```text
-Copyright:: Copyright (c) 2014 CloudOps.com
+Copyright:: Copyright (c) 2015 CloudOps.com
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
