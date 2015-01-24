@@ -29,6 +29,9 @@ Configure a CloudStack Management server which will contain:
 - setup nfs share: ``/data/secondary`` for the secondary storage
 - Download XenServer SystemVM template.
 - Download vhd-util script.
+- start cloudstack-management
+- install and start cloudstack-usage
+- Generate API keys for "admin"
 
 Just include `cloudstack_wrapper::all_in_one` in your node's `run_list`:
 
@@ -49,14 +52,23 @@ to use Local Storage for System VMs.
 
 #### cloudstack_wrapper::management_server
 
-Install Management Server using remote NFS share as Secondary Storage and
-remote MySQL server.
+- Install cloudstack-management
+- Initialise cloudstack database on remote MySQL server.
+- Download system vm template using remote NFS share.
+- Start cloudstack-management
+- Generage API keys for "admin".
 
 
 #### cloudstack_wrapper::mgt_remotenfs
 
-Use Remote NFS share for Secondary Storage and install MySQL server and 
-management server locally.
+Use Remote NFS share for Secondary Storage. Management server and cloudstack_usage
+locally.
+
+
+#### cloudstack_wrapper::mgt_db_remotenfs
+
+Install management server, cloudstack_usage, and MySQL server and use remote NFS
+shares.
 
 
 #### cloudstack_wrapper::database_server
