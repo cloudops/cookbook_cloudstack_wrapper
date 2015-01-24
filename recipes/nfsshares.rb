@@ -2,7 +2,7 @@
 # Resource:: nfsshares
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
-# Copyright:: Copyright (c) 2014 CloudOps.com
+# Copyright:: Copyright (c) 2015 CloudOps.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.require "system_vm_template"

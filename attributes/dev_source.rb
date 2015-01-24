@@ -2,7 +2,7 @@
 # Cookbook Name:: cloudstack_wrapper
 # Attribute:: dev_source
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
-# Copyright:: Copyright (c) 2014 CloudOps.com
+# Copyright:: Copyright (c) 2015 CloudOps.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,5 +24,5 @@
 default['java']['jdk_version'] = '7'
 default['maven']['version'] = 3
 
-default['cloudstack']['source']['repo'] = "https://github.com/apache/cloudstack.git"
+default['cloudstack']['source']['repo'] = 'https://github.com/apache/cloudstack.git'
 default['cloudstack']['source']['branch'] = '4.4'
