@@ -16,7 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+################################################################################
 # Install and build CloudStack from Source
+################################################################################
+# NOT COMPLETED YET
 
 default['java']['jdk_version'] = '7'
 default['maven']['version'] = 3

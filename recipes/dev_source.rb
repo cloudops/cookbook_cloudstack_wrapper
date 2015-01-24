@@ -19,11 +19,11 @@
 # Install and build CloudStack from Source
 
 # dependencies
-include_recipe 'build-essential::default'
-include_recipe 'java'
-include_recipe 'git'
-include_recipe 'maven'
-include_recipe 'tomcat'
+#include_recipe 'build-essential::default'
+#include_recipe 'java'
+#include_recipe 'git'
+#include_recipe 'maven'
+#include_recipe 'tomcat'
 
 service 'tomcat6' do
 	action :stop, :disable
