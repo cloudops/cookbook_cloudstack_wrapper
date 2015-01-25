@@ -29,6 +29,7 @@
 ###############################################################################
 
 include_recipe 'cloudstack::management_server'
+include_recipe 'selinux::disabled'
 
 # init database and connection configuration
 cloudstack_setup_database node['cloudstack']['db']['host'] do
