@@ -29,7 +29,14 @@
 #node.set['mysql']['allow_remote_root'] = true
 #node.set['mysql']['data_dir'] = '/data/mysql'
 
-include_recipe 'mysql::server'
+mysql_service 'default' do
+#  version '5.7'
+  bind_address '0.0.0.0'
+  port '3306'  
+  data_dir node['mysql']['data_dir']
+  initial_root_password node['cloudstack']['db']['rootpassword']
+  action [:create, :start]
+end
 
 include_recipe 'cloudstack::mysql_conf'
 
