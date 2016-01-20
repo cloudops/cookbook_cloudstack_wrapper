@@ -3,6 +3,11 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.2.1
+-----
+- pdion891 - Add Berkshelf support.
+           - fix selinux for database server.
+           - add customized log4j-cloud.xml for ACS 4.7.x
 0.2.0
 -----
 - pdion891 - update use of mysql cookbook to suport version 6.

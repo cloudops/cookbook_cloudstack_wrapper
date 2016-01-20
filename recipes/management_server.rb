@@ -28,8 +28,8 @@
 # 6. Generate API keys for admin
 ###############################################################################
 
-include_recipe 'cloudstack::management_server'
 include_recipe 'selinux::disabled'
+include_recipe 'cloudstack::management_server'
 
 # init database and connection configuration
 cloudstack_setup_database node['cloudstack']['db']['host'] do
@@ -58,11 +58,11 @@ service 'cloudstack-management' do
 end
 
 #cloudstack_generate_api_keys 'admin'
-cloudstack_api_keys 'admin' do
-  admin_apikey    node['cloudstack']['admin']['api_key']
-  admin_secretkey node['cloudstack']['admin']['secret_key']
-  action          :create
-  # adding delay to let CloudStack management-server start properly
-  retries         12
-  retry_delay     5
-end
+#cloudstack_api_keys 'admin' do
+#  admin_apikey    node['cloudstack']['admin']['api_key']
+#  admin_secretkey node['cloudstack']['admin']['secret_key']
+#  action          :create
+#  # adding delay to let CloudStack management-server start properly
+#  retries         12
+#  retry_delay     5
+#end

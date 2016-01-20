@@ -36,13 +36,15 @@ include_recipe 'cloudstack_wrapper::nfsshares'
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
+include_recipe 'cloudstack_wrapper::_log4j'
+
 
 # Changing Global Settings example:
-cloudstack_global_setting 'system.vm.use.local.storage' do
-  admin_apikey    node['cloudstack']['admin']['api_key']
-  admin_secretkey node['cloudstack']['admin']['secret_key']
-  value 'true'
-  retries 5
-  retry_delay 2
-  notifies :restart, "service[cloudstack-management]", :delayed
-end
+#cloudstack_global_setting 'system.vm.use.local.storage' do
+#  admin_apikey    node['cloudstack']['admin']['api_key']
+#  admin_secretkey node['cloudstack']['admin']['secret_key']
+#  value 'true'
+#  retries 5
+#  retry_delay 2
+#  notifies :restart, "service[cloudstack-management]", :delayed
+#end

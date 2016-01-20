@@ -22,7 +22,7 @@
 # 1. Install MySQL server.
 # 2. Initialize cloud database.
 
-
+include_recipe 'selinux::disabled'
 # Wrapper recipe to create the database server.
 #########
 #node.set['mysql']['server_root_password'] = 'cloud'

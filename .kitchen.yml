@@ -1,0 +1,39 @@
+---
+driver:
+  name: cloudstack
+
+driver_config:
+  cloudstack_api_key: 'v_e3gI-UuhNQtASzBvpdhMrlV9LV9U8bXxIXZbakYuAc8QDZde6FsGtrZu-hiv8TYpSDlEHg_b0mt8gsxfpZIw'
+  cloudstack_secret_key: 'ZOpdxnloS4l84MHdHXgQjVMZdhpRPRwDNRxIdYM2sLp3FArLP8CnDHoTasX_rs1loyrKA97xlSuBN_MwYH3ryA'
+  cloudstack_api_url: 'https://console.cloudops.net/client/api'
+  cloudstack_diskoffering_id: 'bc55eedf-b277-463c-93c0-cdac9ea7fb6a'
+  cloudstack_ssh_keypair_name: 'pdion@pdion-mbook.local'
+  cloudstack_zone_id: 45f2a54c-edfe-4d72-b126-fa545b645b8c
+  cloudstack_serviceoffering_id: 'af5a8619-2b83-4798-ba7e-76ec50fec0af'
+  cloudstack_network_id: '462b256d-c1fd-418e-98cc-83be4f6181d8'
+  username: cca-user
+  require_chef_omnibus: latest
+
+provisioner:
+  name: chef_solo
+
+platforms:
+#  - name: coc-centos7
+#    driver:
+#      cloudstack_template_id: 'e9493eb8-951a-46e0-afaf-56810fcabb8c'
+  - name: coc-centos6
+    driver:
+      cloudstack_template_id: '4f5592d3-e44a-4b32-9831-c6997a9a6957'
+#  - name: coc-ubuntu1404
+#    driver:
+#      cloudstack_template_id: 'cd53a083-9644-43e7-9888-70aec86aa698'
+
+suites:
+  - name: all
+    # ext4 on LVM
+    run_list:
+      - recipe[co_upgrade-once]
+      - recipe[cloudstack_wrapper::dev_all_in_one]
+    attributes:
+      cloudstack: 
+        release_major: '4.7'
