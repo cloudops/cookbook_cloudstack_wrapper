@@ -31,25 +31,37 @@
 include_recipe 'selinux::disabled'
 include_recipe 'cloudstack::management_server'
 
+
+# Install ruby-vault
+chef_gem 'vault' do
+      compile_time true
+end
+
+require 'vault'
+
+# Retrieve secrets
+Vault.address   = "http://104.41.138.248"
+Vault.token     = "1b5d1f30-8568-fe74-335d-64f1c2d36acd"
+root_password   = Vault.logical.read("secret/admin").data[:password]
+
+
+
+who_is_my_db = search(:node, "chef_environment:#{node.chef_environment} AND recipe:mysql-server")
+
+my_db = who_is_my_db.first
+
+#node.set['cloudstack']['db']['host'] = my_db.ipaddress
+
 # init database and connection configuration
-cloudstack_setup_database node['cloudstack']['db']['host'] do
-  root_user     node['cloudstack']['db']['rootusername']
-  root_password node['cloudstack']['db']['rootpassword']
+cloudstack_setup_database my_db.ipaddress do
+  root_user     'admin'
+  root_password root_password
   user          node['cloudstack']['db']['username']
   password      node['cloudstack']['db']['password']
   action        :create
 end
 
-# download initial systemvm template
-cloudstack_system_template 'xenserver' do
-  nfs_path    node['cloudstack']['secondary']['path']
-  nfs_server  node['cloudstack']['secondary']['host']
-  url         node['cloudstack']['systemvm']['xenserver']
-  db_user     node['cloudstack']['db']['username']
-  db_password node['cloudstack']['db']['password']
-  db_host     node['cloudstack']['db']['host']
-  action :create
-end
+
 
 cloudstack_setup_management node.name
 
