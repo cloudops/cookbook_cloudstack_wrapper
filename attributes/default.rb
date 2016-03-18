@@ -17,16 +17,14 @@
 #
 
 # Database configurations
-default['cloudstack']['db']['host'] = '10.0.0.9'
+default['cloudstack']['db']['host'] = '127.0.0.1'
 default['cloudstack']['db']['user'] = 'cloud'
-default['cloudstack']['db']['password'] = 'cloud'
+default['cloudstack']['db']['password'] = 'password'
 default['cloudstack']['db']['rootusername'] = 'root'
-default['cloudstack']['db']['rootpassword'] = 'patate'
+default['cloudstack']['db']['rootpassword'] = 'cloud'
 default['cloudstack']['db']['management_server_key'] = 'password'
 default['cloudstack']['db']['database_key'] = 'password'
 
-default['cloudstack']['release_major'] = "4.8"
-default['cloudstack']['repo_sign'] = ""
 
 # Default Secondary storage where system template VMs are copied.
 default['cloudstack']['secondary']['host'] = node['ipaddress']
