@@ -28,6 +28,13 @@ cookbook_file '/etc/rsyslog.conf' do
   group 'root'
 end
 
+cookbook_file '/etc/rsyslog.d/30-cloudstack.conf' do
+  source "#{node['cloudstack']['release_major']}/30-cloudstack.conf"
+  owner 'root'
+  group 'root'
+  notifies :restart, "service[rsyslog]"
+end
+
 cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
   source "#{node['cloudstack']['release_major']}/log4j-cloud.xml"
   owner 'root'
