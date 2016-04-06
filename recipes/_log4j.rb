@@ -26,21 +26,11 @@ cookbook_file '/etc/rsyslog.conf' do
   source "#{node['cloudstack']['release_major']}/rsyslog.conf"
   owner 'root'
   group 'root'
-  not_if { node['cloudstack']['release_major'] != '4.7' }
-end
-
-cookbook_file '/etc/rsyslog.d/30-cloudstack.conf' do
-  source "#{node['cloudstack']['release_major']}/30-cloudstack.conf"
-  owner 'root'
-  group 'root'
-  not_if { node['cloudstack']['release_major'] != '4.7' }
-  notifies :restart, "service[rsyslog]"
 end
 
 cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
   source "#{node['cloudstack']['release_major']}/log4j-cloud.xml"
   owner 'root'
   group 'root'
-  not_if { node['cloudstack']['release_major'] != '4.7' }
 end
 

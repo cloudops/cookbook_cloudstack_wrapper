@@ -36,6 +36,7 @@ include_recipe 'cloudstack_wrapper::nfsshares'
 include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
+include_recipe 'cloudstack_wrapper::_log4j'
 
 # Changing Global Settings example:
 cloudstack_global_setting 'expunge.delay' do
