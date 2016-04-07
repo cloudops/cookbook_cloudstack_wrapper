@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.2.5
+-----
+- ccontini - Forward cloudstack messages using SimpleForward.
+
 0.2.4
 -----
 - ccontini - add a cloudstack specific rsyslog config.
