@@ -41,3 +41,8 @@ default['cloudstack']['network']['system']['subnet'] = '*'
 
 default['cloudstack']['admin']['api_key'] = '' # automatically generated
 default['cloudstack']['admin']['secret_key'] = ''  # automatically generated
+
+default['cloudstack']['eventlog']['server'] = 'msg-east.cloud.ca'
+default['cloudstack']['eventlog']['username'] = 'cloudstack-events'
+default['cloudstack']['eventlog']['password'] = 'cloudstack-events'
+default['cloudstack']['eventlog']['virtualHost'] = 'cloudstack-events'

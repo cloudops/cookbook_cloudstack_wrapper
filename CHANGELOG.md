@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.2.6
+-----
+- ccontini - Add eventlog config
+
 0.2.5
 -----
 - ccontini - Forward cloudstack messages using SimpleForward.
