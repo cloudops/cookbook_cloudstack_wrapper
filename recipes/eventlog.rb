@@ -17,6 +17,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This attribute must be set at the environement level
+if node['cloudstack']['eventlog']['virtualHost'].empty? then
+    Chef::Log.info('This recipe need cloudstack.eventlog.virtualHost to be defined at the environment level.')
+    return
+end
+
 service 'cloudstack-management' do
   action :nothing
 end
@@ -29,13 +35,24 @@ directory '/etc/cloudstack/management/META-INF/cloudstack/core' do
     action      :create
 end
 
+case node['ipaddress'].split('.')[1]
+    when '25', '29'
+        rabbit_host = 'msg-east.cloud.ca'
+    else
+        rabbit_host = '172.16.1.137'
+end
+
+if not node['cloudstack']['eventlog']['server'].empty? then
+    rabbit_host = node['cloudstack']['eventlog']['server']
+end
+
 template '/etc/cloudstack/management/META-INF/cloudstack/core/spring-event-bus-context.xml' do
     source 'spring-event-bus-context.xml.erb'
     owner 'root'
     group 'root'
     mode '0644'
     variables({
-        :server => node['cloudstack']['eventlog']['server'],
+        :server => rabbit_host,
         :username => node['cloudstack']['eventlog']['username'],
         :password => node['cloudstack']['eventlog']['password'],
         :virtualHost => node['cloudstack']['eventlog']['virtualHost']
