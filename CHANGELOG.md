@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.2.8
+-----
+- ccontini - remove expunge delay in all_in_one recipe
+
 0.2.7
 -----
 - ccontini - Handle vhost definition as an environment attribute.
