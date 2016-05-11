@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.3.0
+-----
+- ccontini - Change rsyslog template to forward to lab or prod depending on the IP
+
 0.2.8
 -----
 - ccontini - remove expunge delay in all_in_one recipe

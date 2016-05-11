@@ -7,4 +7,5 @@ $ActionQueueSaveOnShutdown on # save in-memory data if rsyslog shuts down
 
 $template SimpleForward,"%rawmsg%"
 
-local6.* @@log-c7.cloudops.net:5515;SimpleForward
+local6.* @@<%= @facility %>:5515;SimpleForward
+local6.* ~
