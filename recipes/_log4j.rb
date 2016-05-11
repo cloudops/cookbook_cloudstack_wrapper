@@ -33,6 +33,8 @@ facility = ""
 case node['ipaddress'].slice(0,7)
     when "172.16."
         facility = "loglab.cloudops.net"
+    when "172.31."
+        facility = "loglab.cloudops.net"
     when "172.25."
         facility = "log-c7.cloudops.net"
     when "172.29."
