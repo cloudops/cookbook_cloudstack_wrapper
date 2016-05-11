@@ -3,6 +3,14 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.3.2
+-----
+- ccontini - Limit the Queue Size
+
+0.3.1
+-----
+- ccontini - Add 172.31/16 range to lab machines
+
 0.3.0
 -----
 - ccontini - Change rsyslog template to forward to lab or prod depending on the IP
