@@ -49,12 +49,3 @@ include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
 
-# Changing Global Settings example:
-cloudstack_global_setting 'expunge.delay' do
-  admin_apikey    node['cloudstack']['admin']['api_key']
-  admin_secretkey node['cloudstack']['admin']['secret_key']
-  value '80'
-  retries 5
-  retry_delay 2
-  #notifies :restart, "service[cloudstack-management]", :delayed
-end

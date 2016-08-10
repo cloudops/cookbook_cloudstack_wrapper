@@ -25,7 +25,6 @@ default['cloudstack']['db']['rootpassword'] = 'cloud'
 default['cloudstack']['db']['management_server_key'] = 'password'
 default['cloudstack']['db']['database_key'] = 'password'
 
-
 # Default Secondary storage where system template VMs are copied.
 default['cloudstack']['secondary']['host'] = node['ipaddress']
 default['cloudstack']['secondary']['path'] = '/data/secondary'
@@ -46,3 +45,5 @@ default['cloudstack']['eventlog']['server'] = ''
 default['cloudstack']['eventlog']['username'] = 'cloudstack-events'
 default['cloudstack']['eventlog']['password'] = 'cloudstack-events'
 default['cloudstack']['eventlog']['virtualHost'] = '' # Override at the environment level
+
+#default['cloudstack']['release_major'] = 4.9

@@ -36,7 +36,7 @@ include_recipe 'cloudstack_wrapper::_log4j'
 cloudstack_setup_database node['cloudstack']['db']['host'] do
   root_user     node['cloudstack']['db']['rootusername']
   root_password node['cloudstack']['db']['rootpassword']
-  user          node['cloudstack']['db']['username']
+  user          node['cloudstack']['db']['user']
   password      node['cloudstack']['db']['password']
   action        :create
 end
@@ -46,7 +46,7 @@ cloudstack_system_template 'xenserver' do
   nfs_path    node['cloudstack']['secondary']['path']
   nfs_server  node['cloudstack']['secondary']['host']
   url         node['cloudstack']['systemvm']['xenserver']
-  db_user     node['cloudstack']['db']['username']
+  db_user     node['cloudstack']['db']['user']
   db_password node['cloudstack']['db']['password']
   db_host     node['cloudstack']['db']['host']
   action :create
