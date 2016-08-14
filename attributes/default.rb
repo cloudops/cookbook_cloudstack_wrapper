@@ -45,5 +45,3 @@ default['cloudstack']['eventlog']['server'] = ''
 default['cloudstack']['eventlog']['username'] = 'cloudstack-events'
 default['cloudstack']['eventlog']['password'] = 'cloudstack-events'
 default['cloudstack']['eventlog']['virtualHost'] = '' # Override at the environment level
-
-#default['cloudstack']['release_major'] = 4.9
