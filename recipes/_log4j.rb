@@ -41,20 +41,6 @@ case node['ipaddress'].slice(0,7)
         facility = "log-c7.cloudops.net"
 end
 
-if not facility.empty?
-    template '/etc/rsyslog.d/30-cloudstack.conf' do
-      source "30-cloudstack.conf.erb"
-      owner 'root'
-      group 'root'
-      variables ({
-        :facility => facility
-      })
-      notifies :restart, "service[rsyslog]"
-    end
-else
-    Chef::Log.warn('Cannot install /etc/rsyslog.d/30-cloudstack.conf because no target was found')
-end
-
 cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
   source "#{node['cloudstack']['release_major']}/log4j-cloud.xml"
   owner 'root'
