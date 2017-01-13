@@ -31,6 +31,7 @@
 include_recipe 'selinux::disabled'
 include_recipe 'cloudstack::management_server'
 include_recipe 'cloudstack_wrapper::_log4j'
+include_recipe 'cloudstack_wrapper::_filebeat'
 
 # init database and connection configuration
 cloudstack_setup_database node['cloudstack']['db']['host'] do

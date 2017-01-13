@@ -33,19 +33,6 @@ cookbook_file '/etc/rsyslog.conf' do
   notifies :restart, 'service[rsyslog]'
 end
 
-facility = ""
-
-case node['ipaddress'].slice(0,7)
-    when "172.16."
-        facility = "loglab.cloudops.net"
-    when "172.31."
-        facility = "loglab.cloudops.net"
-    when "172.25."
-        facility = "log-c7.cloudops.net"
-    when "172.29."
-        facility = "log-c7.cloudops.net"
-end
-
 cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
   source "#{node['cloudstack']['release_major']}/log4j-cloud.xml"
   owner 'root'

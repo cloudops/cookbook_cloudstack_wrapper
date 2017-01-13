@@ -37,6 +37,7 @@ include_recipe 'cloudstack_wrapper::database_server'
 include_recipe 'cloudstack_wrapper::management_server'
 include_recipe 'cloudstack::usage'
 include_recipe 'cloudstack_wrapper::_log4j'
+include_recipe 'cloudstack_wrapper::_filebeat'
 
 
 # Changing Global Settings example:
