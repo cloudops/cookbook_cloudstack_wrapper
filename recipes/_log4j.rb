@@ -22,10 +22,15 @@ service 'rsyslog' do
   action :nothing
 end
 
+file '/etc/rsyslog.d/30-cloudstack.conf' do
+    action :delete
+end
+
 cookbook_file '/etc/rsyslog.conf' do
   source "#{node['cloudstack']['release_major']}/rsyslog.conf"
   owner 'root'
   group 'root'
+  notifies :restart, 'service[rsyslog]'
 end
 
 facility = ""
