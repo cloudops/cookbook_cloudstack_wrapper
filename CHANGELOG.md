@@ -5,7 +5,7 @@ This file is used to list changes made in each version of the cloudstack_wrapper
 
 0.3.6
 -----
-- ccontini - add remote syslog endpoint for root
+- ccontini - add remote syslog endpoint for root. Add files for supporting 4.10.
 
 0.3.3
 -----
