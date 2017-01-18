@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.3.6
+-----
+- ccontini - add remote syslog endpoint for root
+
 0.3.3
 -----
 - pdion - remove global settings change that cause error.
