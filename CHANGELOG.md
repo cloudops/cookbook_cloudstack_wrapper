@@ -3,9 +3,16 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
-0.3.3
+0.4.0
 -----
 - ccontini - Ship logs via filebeat
+           - add remote syslog endpoint for root. Add files for supporting 4.10.
+- erouleau - Remove SYSLOG targets from log4j
+           - add a cronjob to cleanup cloudstack old logs
+
+0.3.3
+-----
+- pdion - remove global settings change that cause error.
 
 0.3.2
 -----
