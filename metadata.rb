@@ -6,7 +6,8 @@ description      'Configures and Customize Apache CloudStack using cookbook clou
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.4.0'
 
-depends "mysql", ">= 6.0.0"
+
+depends "mysql", "= 6.1.3"
 depends "cloudstack", ">= 3.0.0"
 depends "nfs", ">= 2.0.0"
 depends "selinux", ">= 0.8.0"

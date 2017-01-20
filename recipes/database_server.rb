@@ -23,14 +23,9 @@
 # 2. Initialize cloud database.
 
 include_recipe 'selinux::disabled'
-# Wrapper recipe to create the database server.
-#########
-#node.set['mysql']['server_root_password'] = 'cloud'
-#node.set['mysql']['allow_remote_root'] = true
-#node.set['mysql']['data_dir'] = '/data/mysql'
 
 mysql_service 'default' do
-#  version '5.7'
+  version '5.5'
   bind_address '0.0.0.0'
   port '3306'  
   data_dir node['mysql']['data_dir']

@@ -18,4 +18,4 @@ bin/*
 
 .kitchen/
 .kitchen.local.yml
-.kitchen.yml
+.kitchen.yml*
