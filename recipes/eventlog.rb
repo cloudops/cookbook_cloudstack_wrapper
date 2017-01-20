@@ -36,7 +36,7 @@ directory '/etc/cloudstack/management/META-INF/cloudstack/core' do
 end
 
 case node['ipaddress'].split('.')[1]
-    when '25', '29'
+    when '25', '27', '29'
         rabbit_host = 'msg-east.cloud.ca'
     else
         rabbit_host = '172.16.1.137'
