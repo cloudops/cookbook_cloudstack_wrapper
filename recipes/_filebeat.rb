@@ -40,7 +40,7 @@ facility = ""
 
 case node['ipaddress'].slice(0,7)
     when "172.16."
-        facility = "172.16.21.109"
+        facility = "loglab.cloudops.net"
     when "172.31."
         facility = "loglab.cloudops.net"
     when "172.25."

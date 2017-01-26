@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.4.1
+-----
+- ccontini - Switch filebeat lab URL back to loglab.cloudops.net
+
 0.4.0
 -----
 - ccontini - Ship logs via filebeat
