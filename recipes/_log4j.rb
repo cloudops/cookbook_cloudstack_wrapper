@@ -43,5 +43,5 @@ cron 'cloudstack_log_cleanup' do
   minute '0'
   hour '1'
   user 'root'
-  command 'find /var/log/cloudstack/management/ -mtime +7 -delete'
+  command 'find /var/log/cloudstack/management/ -mtime +3 -delete'
 end
