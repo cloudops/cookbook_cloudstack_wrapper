@@ -22,37 +22,15 @@ service 'rsyslog' do
   action :nothing
 end
 
+file '/etc/rsyslog.d/30-cloudstack.conf' do
+    action :delete
+end
+
 cookbook_file '/etc/rsyslog.conf' do
   source "#{node['cloudstack']['release_major']}/rsyslog.conf"
   owner 'root'
   group 'root'
-end
-
-facility = ""
-
-case node['ipaddress'].slice(0,7)
-    when "172.16."
-        facility = "loglab.cloudops.net"
-    when "172.31."
-        facility = "loglab.cloudops.net"
-    when "172.25."
-        facility = "log-c7.cloudops.net"
-    when "172.29."
-        facility = "log-c7.cloudops.net"
-end
-
-if not facility.empty?
-    template '/etc/rsyslog.d/30-cloudstack.conf' do
-      source "30-cloudstack.conf.erb"
-      owner 'root'
-      group 'root'
-      variables ({
-        :facility => facility
-      })
-      notifies :restart, "service[rsyslog]"
-    end
-else
-    Chef::Log.warn('Cannot install /etc/rsyslog.d/30-cloudstack.conf because no target was found')
+  notifies :restart, 'service[rsyslog]'
 end
 
 cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
@@ -61,3 +39,9 @@ cookbook_file '/etc/cloudstack/management/log4j-cloud.xml' do
   group 'root'
 end
 
+cron 'cloudstack_log_cleanup' do
+  minute '0'
+  hour '1'
+  user 'root'
+  command 'find /var/log/cloudstack/management/ -mtime +3 -delete'
+end
