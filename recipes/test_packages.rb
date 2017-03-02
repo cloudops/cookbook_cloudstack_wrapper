@@ -2,11 +2,10 @@
 # Resource:: test_packages
 # Author:: Pierre-Luc Dion (<pdion@cloudops.com>)
 #
-# Copyright:: Copyright (c) 2016 CloudOps.com
+# Copyright:: Copyright (c) 2017 CloudOps.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.require "system_vm_template"
-
+# you may not use this file except in compliance with the License.require
 # You may obtain a copy of the License at
 #
 #     http://www.apache.org/licenses/LICENSE-2.0
@@ -31,8 +30,29 @@
 ###############################################################################
 
 
-include_recipe 'selinux::disabled'
+#include_recipe 'selinux::permissive'
+selinux_state "SELinux Permissive" do
+  action :permissive
+end
+bash "setenforce" do
+  code "setenforce 0"
+end
+
+include_recipe 'yum-mysql-community::mysql56'
+
+mysql_service 'default' do
+  bind_address '0.0.0.0'
+  port '3306'
+  data_dir node['mysql']['data_dir']
+  initial_root_password node['cloudstack']['db']['rootpassword']
+  action [:create, :start]
+end
+
+include_recipe 'cloudstack::mysql_conf'
+
 include_recipe 'cloudstack::management_server'
+#include_recipe 'cloudstack::usage'
+
 
 # init database and connection configuration
 cloudstack_setup_database node['cloudstack']['db']['host'] do
@@ -43,19 +63,10 @@ cloudstack_setup_database node['cloudstack']['db']['host'] do
   action        :create
 end
 
-cloudstack_setup_management node.name
+cloudstack_setup_management node.name do
+#  tomcat7 true
+end
 
 service 'cloudstack-management' do
   action [ :enable, :start ]
-end
-
-cloudstack_generate_api_keys 'admin'
-
-cloudstack_api_keys 'admin' do
-  admin_apikey    node['cloudstack']['admin']['api_key']
-  admin_secretkey node['cloudstack']['admin']['secret_key']
-  action          :create
-  # adding delay to let CloudStack management-server start properly
-  retries         12
-  retry_delay     5
 end

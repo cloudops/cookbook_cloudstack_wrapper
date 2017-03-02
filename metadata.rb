@@ -7,15 +7,12 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.3.5'
 
 
-depends "mysql", "= 6.1.3"
-depends "cloudstack", ">= 3.0.0"
+#depends "mysql", "= 6.1.3"
+depends 'mysql', '~> 8.0'
+depends 'yum-mysql-community'
+depends "cloudstack"#, ">= 3.0.0"
 depends "nfs", ">= 2.0.0"
-depends "selinux", ">= 0.8.0"
-#depends 'build-essential'
-#depends 'tomcat'
-#depends 'git'
-#depends 'maven'
-#depends 'java'
+depends "selinux" #, ">= 0.8.0"
 
 supports 'centos'
 supports 'redhat'
