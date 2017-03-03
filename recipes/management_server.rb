@@ -53,7 +53,9 @@ cloudstack_system_template 'xenserver' do
   action :create
 end
 
-cloudstack_setup_management node.name
+cloudstack_setup_management node.name do
+  action :run
+end
 
 service 'cloudstack-management' do
   action [ :enable, :start ]

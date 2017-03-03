@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.4.4
+-----
+- pdion - support for centos7
+
 0.4.2
 -----
 - pdion - change log rotate down to 3 days

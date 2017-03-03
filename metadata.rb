@@ -4,7 +4,7 @@ maintainer_email 'pdion@cloudops.com'
 license          'All rights reserved'
 description      'Configures and Customize Apache CloudStack using cookbook cloudstack libraries'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.4.3'
+version          '0.4.4'
 
 
 #depends "mysql", "= 6.1.3"
