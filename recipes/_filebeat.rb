@@ -39,14 +39,14 @@ end
 facility = ""
 
 case node['ipaddress'].slice(0,7)
-    when "172.16."
-        facility = "loglab.cloudops.net"
-    when "172.31."
-        facility = "loglab.cloudops.net"
     when "172.25."
         facility = "log-c7.cloudops.net"
+    when "172.27."
+        facility = "log.system.cloud.ca"
     when "172.29."
         facility = "log-c7.cloudops.net"
+    else
+        facility = "loglab.cloudops.net"
 end
 
 template '/etc/filebeat/filebeat.yml' do
@@ -63,4 +63,3 @@ end
 service 'filebeat' do
     action [:enable, :start]
 end
-

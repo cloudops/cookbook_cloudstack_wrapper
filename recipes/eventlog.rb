@@ -57,5 +57,5 @@ template '/etc/cloudstack/management/META-INF/cloudstack/core/spring-event-bus-c
         :password => node['cloudstack']['eventlog']['password'],
         :virtualHost => node['cloudstack']['eventlog']['virtualHost']
     })
-    notifies :restart, "service[cloudstack-management]"
+    #notifies :restart, "service[cloudstack-management]"
 end

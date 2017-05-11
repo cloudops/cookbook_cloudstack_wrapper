@@ -52,32 +52,6 @@ under the License.
    </appender>
 
    <!-- ============================== -->
-   <!-- Append warnings+ to the syslog if it is listening on UDP port FIXME make sysloghost configurable! -->
-   <!-- ============================== -->
-
-   <appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender">
-      <param name="Threshold" value="WARN"/>
-      <param name="SyslogHost" value="localhost"/>
-      <param name="Facility" value="LOCAL6"/>
-      <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
-      </layout>
-   </appender>
-
-   <!-- ============================== -->
-   <!-- Append alerts to the syslog if it is configured -->
-   <!-- ============================== -->
-
-   <appender name="ALERTSYSLOG" class="org.apache.cloudstack.syslog.AlertsSyslogAppender">
-      <param name="Threshold" value="WARN"/>
-      <param name="SyslogHosts" value=""/>
-      <param name="Facility" value="LOCAL6"/>
-      <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
-      </layout>
-   </appender>
-
-   <!-- ============================== -->
    <!-- send alert warnings+ as the SNMP trap if it is configured! -->
    <!-- ============================== -->
 
@@ -160,6 +134,7 @@ under the License.
    <logger name="apiserver.com.cloud" additivity="false">
       <level value="DEBUG"/>
       <appender-ref ref="APISERVER"/>
+      <appender-ref ref="SYSLOG"/>
    </logger>
 
    <!-- Limit the com.amazonaws category to INFO as its DEBUG is verbose -->
@@ -190,7 +165,7 @@ under the License.
    <!-- ======================= -->
 
    <root>
-      <level value="INFO"/>
+      <level value="DEBUG"/>
       <appender-ref ref="SYSLOG"/>
       <appender-ref ref="CONSOLE"/>
       <appender-ref ref="FILE"/>
