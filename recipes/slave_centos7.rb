@@ -30,7 +30,6 @@
 
 include_recipe 'selinux::disabled'
 include_recipe 'cloudstack::management_server'
-#include_recipe 'cloudstack_wrapper::_log4j'
 include_recipe 'cloudstack_wrapper::_filebeat'
 include_recipe 'cloudstack_wrapper::eventlog'
 
@@ -46,19 +45,28 @@ cloudstack_setup_management node.name do
 end
 
 service 'cloudstack-management' do
-#  action [ :enable, :start ]
-  action [ :disable, :stop ]
+  if node['cloudstack']['centos7']['activate_service']
+    action [ :enable, :start ]
+  else
+    action [ :disable, :stop ]
+  end
+end
+
+service 'cloudstack-usage' do
+  if node['cloudstack']['centos7']['activate_service']
+    action [ :enable, :start ]
+  else
+    action [ :disable, :stop ]
+  end
 end
 
 package "cloudstack-usage" do
    action :install
-#   only_if { node.recipes.include?('cloudstack::management_server') }
 end
 
-
 cron 'cloudstack_log_cleanup' do
-  minute '0'
-  hour '1'
-  user 'root'
+  minute  '0'
+  hour    '1'
+  user    'root'
   command 'find /var/log/cloudstack/management/ -mtime +3 -delete'
 end

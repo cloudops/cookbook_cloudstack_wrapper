@@ -3,6 +3,10 @@ cloudstack_wrapper CHANGELOG
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
 
+0.4.8
+-----
+- pdion - on/off service via attribute for centos7 slave
+
 0.4.7
 -----
 - pdion - recipe for 4.10 on centos7 slave
