@@ -35,10 +35,10 @@ under the License.
         <param name="ActiveFileName" value="/var/log/cloudstack/management/management-server.log"/>
       </rollingPolicy>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
-         <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) %m%n"/>
+         <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
       </layout>
    </appender>
-   
+
    <appender name="APISERVER" class="org.apache.log4j.rolling.RollingFileAppender">
       <param name="Append" value="true"/>
       <param name="Threshold" value="DEBUG"/>
@@ -47,7 +47,7 @@ under the License.
         <param name="ActiveFileName" value="/var/log/cloudstack/management/apilog.log"/>
       </rollingPolicy>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
-         <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) %m%n"/>
+         <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1.}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
       </layout>
    </appender>
 
@@ -60,7 +60,7 @@ under the License.
       <param name="SyslogHost" value="localhost"/>
       <param name="Facility" value="LOCAL6"/>
       <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/>
+         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
       </layout>
    </appender>
 
@@ -73,7 +73,7 @@ under the License.
       <param name="SyslogHosts" value=""/>
       <param name="Facility" value="LOCAL6"/>
       <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) %m%n"/>
+         <param name="ConversionPattern" value="%-5p [%c{3}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
       </layout>
    </appender>
 
@@ -100,7 +100,7 @@ under the License.
       <param name="Target" value="System.out"/>
       <param name="Threshold" value="INFO"/>
       <layout class="org.apache.log4j.EnhancedPatternLayout">
-         <param name="ConversionPattern" value="%-5p [%c{1.}] (%t:%x) %m%n"/>
+         <param name="ConversionPattern" value="%-5p [%c{1.}] (%t:%x) (logid:%X{logcontextid}) %m%n"/>
       </layout>
    </appender>
 
@@ -111,11 +111,11 @@ under the License.
    <category name="com.cloud">
      <priority value="DEBUG"/>
    </category>
-   
+
    <category name="org.apache.cloudstack">
      <priority value="DEBUG"/>
    </category>
-   
+
    <category name="org.apache.cloudstack">
       <priority value="DEBUG"/>
    </category>
@@ -123,7 +123,7 @@ under the License.
    <category name="com.cloud.utils.nio">
      <priority value="INFO"/>
    </category>
-   
+
    <!-- Limit the org.apache category to INFO as its DEBUG is verbose -->
    <category name="org.apache">
       <priority value="INFO"/>
@@ -136,19 +136,19 @@ under the License.
    <category name="org.apache.cloudstack.api.command">
       <priority value="TRACE"/>
    </category>
-   
+
    <category name="org">
       <priority value="INFO"/>
    </category>
-   
+
    <category name="org.springframework">
       <priority value="WARN"/>
    </category>
-   
+
    <category name="org.apache.cloudstack.spring.module.context.ResourceApplicationContext">
       <priority value="WARN"/>
    </category>
-   
+
    <category name="net">
      <priority value="INFO"/>
    </category>
@@ -178,8 +178,6 @@ under the License.
 
    <logger name="org.apache.cloudstack.alerts" additivity="false">
       <level value="WARN"/>
-      <appender-ref ref="SYSLOG"/>
-      <appender-ref ref="CONSOLE"/>
       <appender-ref ref="FILE"/>
       <appender-ref ref="SNMP"/>
       <appender-ref ref="ALERTSYSLOG"/>
@@ -191,8 +189,6 @@ under the License.
 
    <root>
       <level value="INFO"/>
-      <appender-ref ref="SYSLOG"/>
-      <appender-ref ref="CONSOLE"/>
       <appender-ref ref="FILE"/>
    </root>
 

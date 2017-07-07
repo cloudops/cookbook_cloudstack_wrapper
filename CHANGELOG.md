@@ -2,6 +2,11 @@ cloudstack_wrapper CHANGELOG
 ============================
 
 This file is used to list changes made in each version of the cloudstack_wrapper cookbook.
+
+0.4.10
+------
+- pdion - fix log4j for 4.10 to stop sending message to /var/log/messages.
+
 0.4.9
 -----
 - pdion - log4j for 4.10 updated for the community one. now use filebeat anyway.
